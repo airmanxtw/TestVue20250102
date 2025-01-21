@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div>
+      <RouterLink to="/home5">goto home5</RouterLink>
+    </div>
     <h1>{{ oldDesc }}</h1>
     <div>
       <video ref="videoplayer" width="350" muted>
@@ -45,7 +48,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, computed, watch, watchEffect, useTemplateRef } from 'vue';
+import { ref, computed, watch, watchEffect, useTemplateRef, onUnmounted } from 'vue';
 import "@/assets/bouncetoRight.css";
 
 const product = ref<Product | null>(null);
@@ -107,18 +110,34 @@ const loadData = (pid: number) => {
 //   }
 // }, { immediate: true, deep: true })
 
-
-watchEffect(() => {
+watch([productId, play], () => {
   if (play.value) {
-    //document.querySelector('video')?.play();
     vedioplayer.value?.play();
   } else {
-    //document.querySelector('video')?.pause();
     vedioplayer.value?.pause();
   }
   loadData(productId.value);
+  console.log('watch');
+}, { immediate: true })
 
+const timeid = setInterval(() => {
+  console.log('setInterval');
+}, 2000);
+
+onUnmounted(() => {
+  clearInterval(timeid);
 })
+
+
+// watchEffect(() => {
+//   if (play.value) {
+//     vedioplayer.value?.play();
+//   } else {
+//     vedioplayer.value?.pause();
+//   }
+//   loadData(productId.value);
+//   console.log('watchEffect');
+// })
 
 
 

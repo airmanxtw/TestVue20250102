@@ -1,4 +1,5 @@
 <template>
+  <RouterLink to="/home4">goto home4</RouterLink>
   select Category id : {{ selectedIndex }}
   <table>
     <tr>
