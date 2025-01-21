@@ -2,7 +2,7 @@
   <div>
     <h1>{{ oldDesc }}</h1>
     <div>
-      <video ref="videoplayer" width="350">
+      <video ref="videoplayer" width="350" muted>
         <source src="https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_30mb.mp4" type="video/mp4" />
       </video>
     </div>
@@ -50,7 +50,7 @@ import "@/assets/bouncetoRight.css";
 
 const product = ref<Product | null>(null);
 const productId = ref(1);
-const play = ref(false);
+const play = ref(true);
 const tea = ref<Tea>({ name: 'green', age: 100 });
 const vedioplayer = useTemplateRef('videoplayer');
 
