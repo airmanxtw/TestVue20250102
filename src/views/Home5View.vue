@@ -19,6 +19,8 @@ const categories = ref<Category[]>([]);
 const products = ref<ProductItem[]>([]);
 const selectedIndex = ref(0);
 
+// Platzi Fake Store API https://fakeapi.platzi.com/
+
 const loadCategoriesData = () => {
   fetch("https://api.escuelajs.co/api/v1/categories")
     .then(res => res.json())
