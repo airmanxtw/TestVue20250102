@@ -37,6 +37,20 @@ type Doc2 = {
   length: number
 }
 
+type Category = {
+  id: number
+  name: string
+  image: string
+}
+
+type ProductItem = {
+  id: number
+  title: string
+  price: number
+  description: string
+  images: string[]
+}
+
 declare module '*.vue' {
   import { ComponentOptions } from 'vue'
   const componentOptions: ComponentOptions
