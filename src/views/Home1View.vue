@@ -17,7 +17,7 @@
 
 </template>
 <script setup lang="ts">
-import { ref, computed, defineAsyncComponent, watchEffect, watchSyncEffect  } from "vue";
+import { ref, computed, defineAsyncComponent, watchEffect, watchSyncEffect } from "vue";
 import { produce } from "immer";
 //import D1Comp from "@/components/D1Comp.vue";
 import D2Comp from "@/components/D2Comp.vue";
@@ -57,12 +57,10 @@ const getResult = computed(() => {
 const warning = computed(() => counter.value.count > 0 ? '' : 'warning');
 
 watchEffect(() => {
-  debugger;
   w.value = counter.value.count > 0 ? true : false;
 });
 
-watchSyncEffect (() => {
-  debugger;
+watchSyncEffect(() => {
   console.log(counter.value.count);
 });
 
