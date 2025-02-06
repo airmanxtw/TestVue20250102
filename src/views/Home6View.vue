@@ -7,6 +7,7 @@
   <d3-comp :class="scoreClass" />
   <button @click="score++">add</button>
   <button @click="score--">minus</button>
+  <router-link to="/home7">to Home7</router-link>
 </template>
 <script setup lang="ts">
 import { computed, ref } from 'vue'
