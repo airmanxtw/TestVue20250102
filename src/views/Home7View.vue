@@ -18,12 +18,15 @@
     <span><input /></span>
   </template>
 
+  <h-components2 :hvalue="1" content="this is Render Title1" />
+
 
 
 
 </template>
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import HComponents2 from '@/components/HComponents2.vue'
 const visable = ref(true);
 
 const cssName = computed(() => visable.value ? 'block' : 'none');
