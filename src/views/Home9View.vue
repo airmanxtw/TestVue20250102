@@ -3,13 +3,14 @@
   <!-- <div v-for="n in 10" :key="n">{{ n }}</div> -->
   <button @click="addItems">add</button>
   <div v-for="(item) in items1" :key="item">{{ `${item}` }}</div>
-
+  <HComponents3 />
   <!-- <div v-for="(value, key) in item2" :key="key">{{ `key:${key},value:${value}` }}</div>
   <div v-for="(item, index) in items3" :key="index">{{ `words:${item.words},length:${item.length}` }}</div> -->
 </template>
 <script setup lang="ts">
 import { uid } from 'uid';
 import { ref } from 'vue';
+import HComponents3 from '@/components/HComponents3.vue';
 const uuid = ref(uid());
 
 const items1 = ref<string[]>(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]);
