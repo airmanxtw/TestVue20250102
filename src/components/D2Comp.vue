@@ -3,15 +3,15 @@
   <D22Comp />
 </template>
 <script setup lang="ts">
-import {useType} from '@/composables/useType';
+import {KEY} from '@/composables/useType';
 
 // import { inject, type InjectionKey,type Ref } from 'vue'
 import D22Comp from './D22Comp.vue';
 import {provide} from 'vue';
 
-const {key}=useType();
 
-provide(key, "123")
+
+provide(KEY, "123")
 
 // const data=inject<Ref<string,string>>("data");
 // console.log(data?.value);
