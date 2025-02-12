@@ -7,6 +7,6 @@ import { KEY } from '@/composables/useType';
 
 const v = inject(KEY) as string;
 console.log(v);
-debugger;
+
 
 </script>
