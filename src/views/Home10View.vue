@@ -7,13 +7,45 @@
   <div style="width:200px;height:100px;overflow-y:scroll;" @wheel.prevent="toBig">
     <div v-for="n in 50" :key="n">div {{ n }}</div>
   </div>
-  <input :value="plate" @input="(e) => { plate = (e.target as HTMLInputElement).value.toLocaleUpperCase() }" />
+  <!-- <input :value="plate"
+    @input="(e: Event) => { plate = (e.target as HTMLInputElement).value.toLocaleUpperCase() }" /> -->
+
+  <span style="margin-top: 20px;">請輸入車牌:</span>
+  <input :value="plate"
+    @input="(e: Event) => { plate = (e.target as HTMLInputElement).value.toLocaleUpperCase() }" />
+  <div :class="{ 'warning': plate.length > maxLength }">輸入字數: {{ plateCount }}/{{ maxLength }}</div>
+
+  <img src="https://picsum.photos/id/237/200/300" @wheel="onWheel" :width="`${imgWidth}px`" />
 
 </template>
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 const size = ref(12);
 const plate = ref('');
+const plateCount = computed(() => plate.value.length);
+const maxLength = ref(8);
+const imgWidth = ref(200);
+
+const onWheel = (e: Event) => {
+  imgWidth.value += (e as WheelEvent).deltaY > 0 ? -10 : 10;
+}
+
+const onPlate = (e: Event) => {
+  console.log(`:${e.cancelable}`);
+  e.preventDefault();
+  // if ((e.target as HTMLInputElement).value.length > maxLength.value) {
+  //   console.log(`:${e.cancelable}`);
+  //   e.preventDefault();
+  // }
+  // else {
+  //   plate.value = (e.target as HTMLInputElement).value.toLocaleUpperCase();
+  // }
+}
+
+
+
+
+
 const fontSize = computed(() => `font-size:${size.value}px`);
 
 onMounted(() => {
@@ -31,3 +63,8 @@ const doAlert = (message: string) => {
   alert(message);
 }
 </script>
+<style scoped>
+.warning {
+  color: red;
+}
+</style>
