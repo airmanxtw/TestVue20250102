@@ -4,8 +4,20 @@
   <button @click="addItems">add</button>
   <div v-for="(item) in items1" :key="item">{{ `${item}` }}</div>
   <HComponents3 />
-  <input type="radio" value="r1" name="g1" @change="clickRadio" />
-  <input type="radio" value="r2" name="g1" @change="clickRadio" />
+  <div>
+    {{ radioValue }}
+  </div>
+
+  <select v-model="radioValue" multiple>
+    <option disabled value="">Please select one</option>
+    <template v-for="(item) in item4" :key="item.key">
+      <option :value="item"> {{ item.value }}</option>
+    </template>
+  </select>
+
+  <input type="radio" value="1" v-model="ivalue">
+
+
   <!-- <div v-for="(value, key) in item2" :key="key">{{ `key:${key},value:${value}` }}</div>
   <div v-for="(item, index) in items3" :key="index">{{ `words:${item.words},length:${item.length}` }}</div> -->
 </template>
@@ -15,7 +27,11 @@ import { ref } from 'vue';
 import HComponents3 from '@/components/HComponents3.vue';
 const uuid = ref(uid());
 
-const clickRadio=(e:Event)=>{
+const radioValue = ref<KeyValue[]>([]);
+const ivalue = ref<string>("");
+const ivalue0 = ref<string>("init");
+
+const clickRadio = (e: Event) => {
   debugger;
   console.log(e);
 }
@@ -30,5 +46,12 @@ const item2 = ref<Doc2>({ words: "hello", length: 100 });
 const items3 = ref<Doc2[]>([
   { words: "hello", length: 100 },
   { words: "world", length: 200 },
+]);
+
+const item4 = ref<KeyValue[]>([
+  { key: "a1", value: "this is book" },
+  { key: "a2", value: "this is pen" },
+  { key: "a3", value: "this is pencil" },
+  { key: "a4", value: "this is eraser" },
 ]);
 </script>
