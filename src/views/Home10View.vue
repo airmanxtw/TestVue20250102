@@ -1,7 +1,7 @@
 <template>
   <h1 @copy.prevent :style="fontSize">home10</h1>
-  <div style="width:400px;background-color: aqua;padding :10px;" @click="() => doAlert('this is div 1')">
-    <div style="width:200px;background-color:burlywood;" @click.once="() => doAlert('this is div 2')">this is div 2
+  <div style="width:400px;background-color: aqua;padding :10px;" @click.capture.stop="() => doAlert('this is div 1')">
+    <div style="width:200px;background-color:burlywood;" @click="() => doAlert('this is div 2')">this is div 2
     </div>
   </div>
   <div style="width:200px;height:100px;overflow-y:scroll;" @wheel.prevent="toBig">
@@ -11,8 +11,7 @@
     @input="(e: Event) => { plate = (e.target as HTMLInputElement).value.toLocaleUpperCase() }" /> -->
 
   <span style="margin-top: 20px;">請輸入車牌:</span>
-  <input :value="plate"
-    @input="(e: Event) => { plate = (e.target as HTMLInputElement).value.toLocaleUpperCase() }" />
+  <input :value="plate" @input="(e: Event) => { plate = (e.target as HTMLInputElement).value.toLocaleUpperCase() }" />
   <div :class="{ 'warning': plate.length > maxLength }">輸入字數: {{ plateCount }}/{{ maxLength }}</div>
 
   <img src="https://picsum.photos/id/237/200/300" @wheel="onWheel" :width="`${imgWidth}px`" />
@@ -59,7 +58,6 @@ const toBig = (e: Event) => {
 }
 
 const doAlert = (message: string) => {
-
   alert(message);
 }
 </script>
