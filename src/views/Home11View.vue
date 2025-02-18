@@ -1,29 +1,51 @@
 <template>
-  {{ r1 }}<br />
-  <input ref="i1" type="radio" @change="radioChange" value="abc" :checked="r1Checked" />
-  <!-- <input type="radio"  value="abc" v-model="r1" /> -->
+  <div>
+    i1 input: {{ i1Value }}<br />
+    <input id="i1" type="text" v-bind:value="i1Value" v-on:change="i1Input">
+  </div>
+  <div>
+    i2 input: {{ i2Value }}<br />
+    <input id="i2" type="text" v-model.lazy="i2Value">
+  </div>
+  <div>
+    r1 radio: {{ r1Value }}<br />
+    <template v-for="item in r1Data" :key="item">
+      <input type="radio" :value="item" :checked="r1Checked(item)" @input="r1Input">{{ item }}
+    </template>
+  </div>
 
-  <hr />
-  {{ selectR1 }}<br />
-  <template v-for="(item, index) in dataR1" :key="index">
-    <input type="radio" :value="item" @input="r1Change(item)" :checked="checkedR1(item)" />
-    {{ item.value }}<br />
-  </template>
+  <div>
+    r2 radio: {{ r2Value }}<br />
+    <template v-for="item in r2Data" :key="item">
+      <input type="radio" :value="item" v-model="r2Value">{{ item }}
+    </template>
+  </div>
 
-  <input type="color" @change="b1Input">
+  <div>
+    r3 radio: {{ r3Value }}<br />
+    <template v-for="item in r3Data" :key="item.key">
+      <input type="radio" :value="item" :checked="r3Checked(item)" @input="r3Input">{{ item.value }}
+    </template>
+  </div>
 
+  <div>
+    r4 radio: {{ r4Value }}<br />
+    <template v-for="item in r4Data" :key="item.key">
+      <input type="radio" :value="item" v-model="r4Value">{{ item.value }}
+    </template>
+  </div>
 
-  <!-- <template v-for="(item, index) in dataC1" :key="index">
-    <input type="checkbox" :value="item" @change="c1Change" :checked="checkedC1(item)">
-    {{ item }}-{{ checkedC1(item) }}<br />
-    <br />
-  </template> -->
+  <div>
+    c5 radio: {{ c5Value }}<br />
+    <template v-for="item in c5Data" :key="item.key">
+      <input type="checkbox" :value="item" v-model="c5Value">{{ item.value }}
+    </template>
+  </div>
 
-  <!-- <template v-for="(item, index) in dataC1" :key="index">
-    <input type="checkbox" :value="item" v-model="selectC1" />
-    {{ item }}<br />
-    <br />
-  </template> -->
+  <div style="font-size: 50px;">
+    ☹哭
+  </div>
+
 
 
 
@@ -31,42 +53,43 @@
 
 </template>
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-const i1 = ref<null | HTMLInputElement>(null);
-const r1 = ref("abc");
-const r1Value = ref("abc");
-const r1Checked = computed(() => r1?.value === r1Value.value);
+import { ref } from 'vue';
 
-const dataC1 = ref<string[]>(["種花", "種樹", "種草"]);
-const selectC1 = ref<string[]>([]);
-
-const checkedC1 = (v: string) => selectC1.value.includes(v);
-
-const c1Change = (e: Event) => {
-  const target = e.target as HTMLInputElement;
-  if (target.checked) {
-    selectC1.value = [...selectC1.value, target.value];
-  } else {
-    selectC1.value = selectC1.value.filter((v) => v !== target.value);
-  }
-};
-
-const dataR1 = ref<KeyValue[]>([{ key: "M", value: "男" }, { key: "F", value: "女" }]);
-const selectR1 = ref<KeyValue | null>(null);
-const checkedR1 = (v: KeyValue) => selectR1.value === v;
-const r1Change = (v: KeyValue) => {
-  selectR1.value = v;
-};
-
-
-const radioChange = (e: Event) => {
-  r1.value = (e.target as HTMLInputElement).value;
+const i1Value = ref<string>("");
+const i1Input = (e: Event) => {
+  i1Value.value = (e.target as HTMLInputElement).value;
 }
 
-const b1Input = (e: Event) => {
-  debugger;
-  console.log(e);
+const i2Value = ref<string>("");
+
+const r1Data = ref<string[]>(["男", "女"]);
+const r1Value = ref<string>("");
+const r1Checked = (v: string) => {
+  return r1Value.value == v;
 }
+const r1Input = (e: Event) => {
+  r1Value.value = (e.target as HTMLInputElement).value;
+}
+
+const r2Data = ref<string[]>(["男", "女"]);
+const r2Value = ref<string>("");
+
+const r3Data = ref<KeyValue[]>([{ key: "M", value: "男" }, { key: "F", value: "女" }]);
+const r3Value = ref<KeyValue | null>(null);
+const r3Input = (e: Event) => {
+  r3Value.value = (e.target as HTMLInputElement).value as unknown as KeyValue;
+}
+
+const r3Checked = (v: KeyValue) => {
+  return r3Value.value?.key === v.key;
+}
+
+const r4Data = ref<KeyValue[]>([{ key: "M", value: "男" }, { key: "F", value: "女" }]);
+const r4Value = ref<KeyValue | null>(null);
+
+const c5Data = ref<KeyValue[]>([{ key: "TP", value: "台北" }, { key: "TN", value: "台南" }]);
+const c5Value = ref<KeyValue[]>([]);
+
 
 
 
