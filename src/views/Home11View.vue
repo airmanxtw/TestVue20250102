@@ -21,7 +21,9 @@
     </template>
   </div>
 
+
   <div>
+    <!-- 不使用v-model -->
     r3 radio: {{ r3Value }}<br />
     <template v-for="item in r3Data" :key="item.key">
       <input type="radio" :value="item.key" :checked="r3Checked(item)" @input="r3Input(item)">{{ item.value }}
@@ -43,6 +45,7 @@
   </div>
 
   <div>
+    <!-- 不使用v-model -->
     c6 checkbox: {{ c6Value }}<br />
     <template v-for="item in c6Data" :key="item.key">
       <input type="checkbox" :value="item.key" :checked="r6Checked(item)" @input="(e) => { r6Input(e, item) }">{{
