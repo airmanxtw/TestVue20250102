@@ -61,6 +61,8 @@
     </template>
   </div>
 
+  <RouterLink to="/home12">Home12</RouterLink>
+
 
 
 
@@ -124,6 +126,9 @@ const r6Checked = (v: KeyValue) => {
 
 const c7Data = ref<KeyValue[]>([{ key: "man1", value: "王小明" }, { key: "man2", value: "陳大東" }, { key: "man3", value: "李小花" }]);
 const c7Value = ref<KeyValue[]>([]);
+
+
+
 
 
 </script>
