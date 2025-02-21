@@ -1,10 +1,20 @@
 <template>
   <span ref="spanTemplate" id="cp">{{ counter }}</span>
   <button @click="addCounter">+</button>
+  <component :is="counter % 2 == 0 ? CusCom1 : CusCom2" :msg="counter" />
+  <CusCom3 v-if="counter >= 5" />
+
+
+  <table>
+    <Cuscom4></Cuscom4>
+  </table>
 
   <RouterLink to="/home11">Home11</RouterLink>
 </template>
 <script setup lang="ts">
+
+import { CusCom1, CusCom2 } from "@/components/Demo/"
+
 
 import {
   ref,
@@ -14,9 +24,15 @@ import {
   onUpdated,
   onBeforeUnmount,
   onUnmounted,
-  nextTick
+  nextTick,
+  defineAsyncComponent
 }
   from 'vue'
+
+//const CusCom3 = defineAsyncComponent(() => import('@/components/Demo/CusCom3.vue'))
+import CusCom3 from "@/components/Demo/CusCom3.vue";
+import Cuscom4 from "@/components/Demo/CusCom4.vue";
+
 
 const counter = ref(0);
 const addCounter = () => {

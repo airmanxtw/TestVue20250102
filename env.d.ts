@@ -56,6 +56,10 @@ type KeyValue = {
   value: string
 }
 
+interface Msg {
+  msg: string
+}
+
 declare module '*.vue' {
   import { ComponentOptions } from 'vue'
   const componentOptions: ComponentOptions
