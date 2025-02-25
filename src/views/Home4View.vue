@@ -49,7 +49,10 @@
 </template>
 <script setup lang="ts">
 import { ref, computed, watch, watchEffect, useTemplateRef, onUnmounted } from 'vue';
+import { useFetch } from "@/composables/useFetch";
 import "@/assets/bouncetoRight.css";
+
+const { getData } = useFetch();
 
 const product = ref<Product | null>(null);
 const productId = ref(1);
@@ -84,12 +87,14 @@ const oldDesc = computed(() => {
 // }
 
 
-const loadData = (pid: number) => {
-  fetch(`https://fakestoreapi.com/products/${pid}`)
-    .then(res => res.json())
-    .then(json => {
-      product.value = json;
-    });
+const loadData = async (pid: number) => {
+  product.value = await getData(`https://fakestoreapi.com/products/${pid}`);
+
+  // fetch(`https://fakestoreapi.com/products/${pid}`)
+  //   .then(res => res.json())
+  //   .then(json => {
+  //     product.value = json;
+  //   });
 }
 
 
