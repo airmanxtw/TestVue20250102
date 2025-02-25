@@ -12,13 +12,21 @@
     <img src="https://picsum.photos/200/300" alt="random" />
   </home13-checkbox>
   <home13-btn v-else></home13-btn>
+  <br />
+  <svg-checkbox :width="50" fill="#ffffff" :checked="myCheck" @click="(c) => myCheck = c">
+
+  </svg-checkbox>
+  {{ myCheck }}
 </template>
 <script setup lang="ts">
 // import Home13Checkbox from '@/components/Home13/Home13Checkbox.vue';
 // import Home13Btn from '@/components/Home13/Home13Btn.vue';
 import { Home13Btn, Home13Checkbox } from "@/components/Home13";
+import SvgCheckbox from "@/components/Home13/SvgCheckbox.vue";
 import { ref } from 'vue';
 const width = ref(120);
+
+const myCheck = ref(false);
 
 const checkboxClick = (val: string) => {
   alert('checkbox clicked:' + val);
