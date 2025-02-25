@@ -49,9 +49,10 @@
 </template>
 <script setup lang="ts">
 import { ref, computed, watch, watchEffect, useTemplateRef, onUnmounted } from 'vue';
-import { useFetch } from "@/composables/useFetch";
+
 import "@/assets/bouncetoRight.css";
 
+import { useFetch } from "@/composables/useFetch";
 const { getData } = useFetch();
 
 const product = ref<Product | null>(null);
