@@ -91,6 +91,15 @@ const oldDesc = computed(() => {
 const loadData = async (pid: number) => {
   //product.value = await getData(`https://fakestoreapi.com/products/${pid}`);
 
+  // getDataByPromise(`https://fakestoreapi.com/products/${pid}`)
+  //   .then((data) => {
+  //     product.value = data;
+  //   })
+
+  // getDataByCallBack(`https://fakestoreapi.com/products/${pid}`, (data) => {
+  //   product.value = data;
+  // })
+
 
 
   // fetch(`https://fakestoreapi.com/products/${pid}`)
