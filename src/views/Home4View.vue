@@ -53,7 +53,7 @@ import { ref, computed, watch, watchEffect, useTemplateRef, onUnmounted } from '
 import "@/assets/bouncetoRight.css";
 
 import { useFetch } from "@/composables/useFetch";
-const { getData } = useFetch();
+const { getData, getDataByPromise, getDataByCallBack } = useFetch();
 
 const product = ref<Product | null>(null);
 const productId = ref(1);
@@ -89,7 +89,9 @@ const oldDesc = computed(() => {
 
 
 const loadData = async (pid: number) => {
-  product.value = await getData(`https://fakestoreapi.com/products/${pid}`);
+  //product.value = await getData(`https://fakestoreapi.com/products/${pid}`);
+
+
 
   // fetch(`https://fakestoreapi.com/products/${pid}`)
   //   .then(res => res.json())

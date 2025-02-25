@@ -3,5 +3,23 @@ export const useFetch = () => {
     const res = await fetch(url)
     return await res.json()
   }
-  return { getData }
+
+  const getDataByPromise = (url: string) => {
+    return new Promise((resolve, reject) => {
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => resolve(data))
+        .catch((err) => reject(err))
+    })
+  }
+
+  const getDataByCallBack = (url: string, callback: (data: unknown) => void) => {
+    {
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => callback(data))
+    }
+  }
+
+  return { getData, getDataByPromise, getDataByCallBack }
 }
