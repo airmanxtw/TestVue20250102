@@ -32,6 +32,10 @@ type Doc1 = {
   words: string
 }
 
+type MyProps = {
+  width?: number
+}
+
 type Doc2 = {
   words: string
   length: number
