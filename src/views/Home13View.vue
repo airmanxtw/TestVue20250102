@@ -13,7 +13,7 @@
   </home13-checkbox>
   <home13-btn v-else></home13-btn>
   <br />
-  <svg-checkbox :width="50" fill="#ffffff" :checked="myCheck" @click="(c) => myCheck = c">
+  <svg-checkbox :width="50"  fill="#ffffff" :checked="myCheck" @click="(c) => myCheck = c">
 
   </svg-checkbox>
   {{ myCheck }}

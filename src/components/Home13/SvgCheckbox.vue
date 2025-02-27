@@ -31,9 +31,9 @@ onMounted(async () => {
   // console.log(valid);
 });
 
-
-
-defineEmits<{
+type dEmit={
   (e: 'click', value: boolean): void
-}>();
+}
+
+defineEmits<dEmit>();
 </script>
