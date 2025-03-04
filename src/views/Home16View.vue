@@ -7,19 +7,24 @@
 import { ref } from 'vue';
 import { Effect, Exit, Cause, pipe } from 'effect';
 import { useFetch } from "@/composables/useFetch";
+
 const { getDataByEffect } = useFetch();
 const productTitleLength = ref(0);
 
 
 const getData = async () => {
 
-  const getTitleLength = (p: Product) => p.title.length;
+  // 取得title欄位的長度
+  const getTitleLength = (p: Product) =>
+    Effect.if(!!p.title == true, { onTrue: () => Effect.succeed(p.title.length), onFalse: () => Effect.fail(new Error('發生錯誤,無title欄位')) });
 
+  // 取得編號為1的產品資料,並取得title欄位的長度
   const titleLength = pipe(
     getDataByEffect(1),
     Effect.andThen(getTitleLength)
   );
 
+  // 批配取得的資料
   Exit.match(await Effect.runPromiseExit(titleLength), {
     onSuccess: (length) => {
       productTitleLength.value = length;
