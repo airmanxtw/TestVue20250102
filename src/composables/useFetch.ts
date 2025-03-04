@@ -1,4 +1,4 @@
-import type { ProjectReference } from 'typescript'
+import { Effect } from 'effect'
 
 export const useFetch = () => {
   const getData = async (url: string) => {
@@ -23,5 +23,14 @@ export const useFetch = () => {
     }
   }
 
-  return { getData, getDataByPromise, getDataByCallBack }
+  const getDataByEffect = (productId: number) =>
+    Effect.tryPromise({
+      try: () =>
+        fetch(`https://jsonplaceholder.typicode.com/posts/${productId}`)
+          .then((res) => res.json())
+          .then((json) => json as Product),
+      catch: () => new Error('取得資料失敗'),
+    })
+
+  return { getData, getDataByPromise, getDataByCallBack, getDataByEffect }
 }

@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
+    "effect": "^3.13.6",
     "immer": "^10.1.1",
     "immutable": "^5.0.3",
     "isomorphic-dompurify": "^2.21.0",
