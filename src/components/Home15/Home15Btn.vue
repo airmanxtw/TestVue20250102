@@ -6,16 +6,18 @@
 <script setup lang="ts">
 import { watch } from 'vue';
 
-//import type { MyEvent } from '@/type/MyProps';
-const props = defineProps<{ play: boolean, done: () => void }>();
+import type { MyEvent } from '@/type/MyProps';
+//const props = defineProps<{ play: boolean, done: () => void }>();
+const props = defineProps<{ play: boolean }>();
 
-//const emit = defineEmits<MyEvent>();
+
+const emit = defineEmits<MyEvent>();
 
 watch(() => props.play, (newVal) => {
   if (newVal == true) {
     setTimeout(() => {
-      //emit('done', false);
-      props.done();
+      emit('done', false);
+      //props.done();
     }, 1000);
   }
 });

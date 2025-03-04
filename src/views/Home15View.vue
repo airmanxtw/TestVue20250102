@@ -1,7 +1,7 @@
 <template>
   <div @click="play = true">
-    <!-- <Home15Btn :play @done="play = false" /> -->
-    <Home15Btn :play :done />
+    <Home15Btn :play @done="play = false" />
+    <!-- <Home15Btn :play :done /> -->
   </div>
 
 </template>
