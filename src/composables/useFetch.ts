@@ -26,7 +26,7 @@ export const useFetch = () => {
   const getDataByEffect = (productId: number) =>
     Effect.tryPromise({
       try: () =>
-        fetch(`https://jsonplaceholder.typicode.com/posts/${productId}`)
+        fetch(`httpxs://jsonplaceholder.typicode.com/posts/${productId}`)
           .then((res) => res.json())
           .then((json) => json as Product),
       catch: () => new Error('取得資料失敗'),

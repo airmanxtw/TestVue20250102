@@ -29,7 +29,8 @@ const getData = async () => {
       productTitleLength.value = length;
     },
     onFailure: (error) => {
-      alert(`發生錯誤: ${(Cause.squash(error) as Error).message}`);
+      //alert(`發生錯誤: ${(Cause.squash(error) as Error).message}`);
+      alert(`發生錯誤: ${Cause.pretty(error)}`);
     }
   })
 }
