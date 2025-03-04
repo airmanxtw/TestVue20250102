@@ -8,6 +8,7 @@ import { ref } from 'vue';
 import { Effect, Exit, Cause, pipe } from 'effect';
 import { useFetch } from "@/composables/useFetch";
 
+
 const { getDataByEffect } = useFetch();
 const productTitleLength = ref(0);
 
