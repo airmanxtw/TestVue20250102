@@ -6,7 +6,8 @@
 
   </slot>
   <!-- <input :value="modelValue" @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" /> -->
-  <input v-model="model" :class="{ silverStone: oninput, error: !oninput }" />
+  <input v-model="model" :class="{ silverStone: onValid.length==0 , error: onValid.length>0 }" />
+  <span :class="{error:onValid.length>0}">{{ onValid.join(',') }} </span>
   <input type="checkbox" v-model="ischecked" class="silverStone" />
   <!-- <input class="silverStone" v-model="personName" /> -->
   <br />
@@ -19,10 +20,10 @@ const model = defineModel<string>();
 const ischecked = defineModel<boolean>('ischecked');
 
 const props = defineProps<{
-  rule: (v: string) => boolean
+  rules: ((v: string) => true | string)[]
 }>();
 
-const oninput = computed(() => props.rule(model?.value ?? ""));
+const onValid = computed(() => props.rules.map(rule=>rule(model.value ?? "")).filter(result=>typeof result === 'string'));
 
 
 
