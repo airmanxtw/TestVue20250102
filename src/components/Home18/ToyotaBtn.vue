@@ -25,8 +25,6 @@ const props = defineProps<{
 
 const onValid = computed(() => props.rules.map(rule=>rule(model.value ?? "")).filter(result=>typeof result === 'string'));
 
-
-
 // const props = defineProps({
 //   modelValue: String
 // })
