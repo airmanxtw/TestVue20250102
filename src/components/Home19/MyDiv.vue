@@ -1,16 +1,15 @@
 <template>
-  <div :style="style2">
-    this is mydiv
-
+  <div>
+    <span v-bind="$attrs">
+      this is mydiv
+    </span>
   </div>
-
-
 </template>
 
 <script setup lang="ts">
 defineOptions({ inheritAttrs: false });
 
-defineProps<{ style2: string }>();
+
 
 
 </script>

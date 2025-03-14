@@ -1,7 +1,13 @@
 <template>
-  <MyDiv style="color:red" class="" data->
+  <MyDiv data-value="hello"></MyDiv>
 
-  </MyDiv>
+  <MyDiv data-value2="hello"></MyDiv>
+  <MyDiv data-value3="hello"></MyDiv>
+  <MyDiv data-value4="hello"></MyDiv>
+
+  
+  <MyDiv data-value5="hello" @click="alertme"></MyDiv>
+
 
 </template>
 <script setup lang="ts">
