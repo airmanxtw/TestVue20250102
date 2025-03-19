@@ -60,7 +60,7 @@ type KeyValue = {
   value: string
 }
 
-type post = {
+type Post = {
   userId: number
   id: number
   title: string

@@ -14,29 +14,38 @@
       <button @click="closeDialog">取消</button>
     </template>
 
+
   </MyDialog>
-  {{ posts }}
+  <my-data-table :model-value="pageData" v-model:page-index="pageIndex" :pageSize :total></my-data-table>
+
 </template>
 <script setup lang="ts">
 import MyDialog from '@/components/Home20/MyDialog.vue';
+import MyDataTable from '@/components/Home21/MyDataTable.vue';
 
 
 import { useAxios } from '@/composables/useAxios';
-import { useAxiosMock } from '@/composables/useAxiosMock';
-const { axios } = useAxiosMock();
-const { getPosts } = useAxios(axios);
+
+// import { useAxiosMock } from '@/composables/useAxiosMock';
+// const { axios } = useAxiosMock();
+const { getPosts } = useAxios();
 
 
 
 
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
-const posts = ref<post[]>([]);
+const posts = ref<Post[]>([]);
+
+
+const pageIndex = ref(1);
+const pageSize = ref(5);
+const total = computed(() => posts.value.length);
+const pageData = computed(() => posts.value.slice((pageIndex.value - 1) * pageSize.value, pageIndex.value * pageSize.value));
 
 getPosts().then((res) => {
   posts.value = res
 })
-
 
 
 const confirm = (e: () => void) => {
