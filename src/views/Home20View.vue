@@ -15,10 +15,22 @@
     </template>
 
   </MyDialog>
+  {{ posts }}
 </template>
 <script setup lang="ts">
 import MyDialog from '@/components/Home20/MyDialog.vue';
+import { useAxios } from '@/composables/useAxios';
+const { getPosts } = useAxios();
 import { ref } from 'vue';
+
+const posts = ref<post[]>([]);
+
+getPosts().then((res) => {
+  posts.value = res
+})
+
+
+
 const confirm = (e: () => void) => {
   alert('confirm')
   e();

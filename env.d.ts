@@ -60,6 +60,13 @@ type KeyValue = {
   value: string
 }
 
+type post = {
+  userId: number
+  id: number
+  title: string
+  body: string
+}
+
 interface Msg {
   msg: string
 }
