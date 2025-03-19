@@ -19,8 +19,16 @@
 </template>
 <script setup lang="ts">
 import MyDialog from '@/components/Home20/MyDialog.vue';
+
+
 import { useAxios } from '@/composables/useAxios';
-const { getPosts } = useAxios();
+import { useAxiosMock } from '@/composables/useAxiosMock';
+const { axios } = useAxiosMock();
+const { getPosts } = useAxios(axios);
+
+
+
+
 import { ref } from 'vue';
 
 const posts = ref<post[]>([]);

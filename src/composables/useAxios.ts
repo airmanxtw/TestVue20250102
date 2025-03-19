@@ -1,9 +1,8 @@
+import type { AxiosInstance } from 'axios'
 import axios from 'axios'
-import { useAxiosMock } from './useAxiosMock'
-export const useAxios = () => {
-  const { axiosInstance } = useAxiosMock(axios)
+export const useAxios = (axiosIns: AxiosInstance = axios) => {
   const getPosts = async () => {
-    const res = await axiosInstance.get<post[]>('https://jsonplaceholder.typicode.com/posts')
+    const res = await axiosIns.get<post[]>('https://jsonplaceholder.typicode.com/posts')
     return res.data
   }
   return { getPosts }
