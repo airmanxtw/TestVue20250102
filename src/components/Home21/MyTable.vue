@@ -15,22 +15,23 @@
       </tr>
       <tr>
         <td colspan="4">
-          <my-pager :page-index="pageIndex" :page-size="pageSize" :total="total"
-            @update:page-index="(i: number) => emit('update:pageIndex', i)"></my-pager>
+          <!-- <my-pager :page-index="pageIndex" :page-size="pageSize" :total="total"
+            @update:page-index="(i: number) => emit('update:pageIndex', i)"></my-pager> -->
+          <slot></slot>
         </td>
       </tr>
     </tbody>
   </table>
 </template>
 <script setup lang="ts">
-import MyPager from '@/components/Home21/MyPager.vue';
+//import MyPager from '@/components/Home21/MyPager.vue';
 defineProps<{
   modelValue: Post[],
-  pageIndex: number;
-  pageSize: number;
-  total: number;
+  // pageIndex: number;
+  // pageSize: number;
+  // total: number;
 }>();
-const emit = defineEmits<{
-  (e: 'update:pageIndex', value: number): void
-}>();
+// const emit = defineEmits<{
+//   (e: 'update:pageIndex', value: number): void
+// }>();
 </script>

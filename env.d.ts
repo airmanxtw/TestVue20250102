@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+//import type { Ref } from 'vue'
 type CClass = {
   name: string
 }
@@ -66,6 +67,8 @@ type Post = {
   title: string
   body: string
 }
+
+
 
 interface Msg {
   msg: string

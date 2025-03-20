@@ -5,10 +5,13 @@
       v-for="i in pageEnd" :key="i">
       {{ i }}
     </span>
+    {{ A?.PageIndex }}
+    <button @click="A?.addPageIndex">add2</button>
   </div>
 </template>
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, inject, ref, watch } from 'vue';
+import { PAGEKEY } from '@/composables/useType';
 const props = defineProps<{
   pageIndex: number;
   pageSize: number;
@@ -25,6 +28,10 @@ const currentPageIndex = ref(props.pageIndex);
 watch(() => currentPageIndex.value, (newVal) => {
   emit('update:pageIndex', newVal)
 })
+
+const A = inject(PAGEKEY);
+
+
 
 </script>
 
