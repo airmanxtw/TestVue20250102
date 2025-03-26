@@ -9,8 +9,12 @@
 import MyDataTable from '@/components/Home21/MyDataTable.vue';
 import { computed, ref } from 'vue';
 
-import { createAlova } from 'alova';
-import adapterFetch from 'alova/fetch';
+
+import axios from 'axios';
+import type { AxiosError } from 'axios';
+
+import { ofetch } from "ofetch";
+import type { FetchError } from "ofetch";
 
 
 const posts = ref<Post[]>([]);
@@ -26,22 +30,19 @@ fetch('https://jsonplaceholder.typicode.com/posts')
   .then(json => posts.value = json)
 
 
-const alovaInstance = createAlova({
-  requestAdapter: adapterFetch(),
-  responded: response => {
-    if (response.ok) {
-      return response.json();
-    }
-    else {
-      throw new Error('Error fetching data');
-    }
-  }
-});
+
 
 const loadData = async () => {
-  const res = await alovaInstance.Get<Post[]>('https://jsonplaceholder.typicode.com/postsx');
-  console.log(res);
-  debugger;
+  try {
+    const data = ofetch.raw<Post[]>('https://jsonplaceholder.typicode.com/postsx', { retry: 3, retryDelay: 1000, method: 'GET' });
+    console.log(data);
+    debugger;
+  }
+  catch (e) {
+    const E = e as FetchError;
+    throw new Error(`發生錯誤:${E.message},status:${E.response?.status}`);
+  }
+
 
 
 

@@ -4,6 +4,7 @@ import { onErrorCaptured } from 'vue';
 // import { RouterLink, RouterView } from 'vue-router'
 
 onErrorCaptured((error) => {
+
   console.log('onErrorCaptured', error.message);
   debugger;
 });
