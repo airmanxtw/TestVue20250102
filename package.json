@@ -14,6 +14,8 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "alova": "^3.2.10",
     "animate.css": "^4.1.1",
     "axios": "^1.8.3",
     "effect": "^3.13.6",
@@ -25,6 +27,7 @@
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
     "vue-timer-hook": "^1.0.84",
+    "vuetify": "^3.7.19",
     "yup": "^1.6.1"
   },
   "devDependencies": {

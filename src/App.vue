@@ -1,12 +1,21 @@
 <script setup lang="ts">
+import { onErrorCaptured } from 'vue';
+
 // import { RouterLink, RouterView } from 'vue-router'
+
+onErrorCaptured((error) => {
+  console.log('onErrorCaptured', error.message);
+  debugger;
+});
 
 </script>
 
 <template>
-  <header>
+  <v-app>
+    <v-container>
+      <RouterView />
+    </v-container>
+  </v-app>
 
-  </header>
 
-  <RouterView />
 </template>
