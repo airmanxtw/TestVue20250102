@@ -19,6 +19,11 @@ const vuetify = createVuetify({
 
 const app = createApp(App)
 
+app.config.errorHandler = (err, instance, info) => {
+  debugger
+  console.error(err, instance, info)
+}
+
 app.use(router).use(vuetify)
 
 app.mount('#app')

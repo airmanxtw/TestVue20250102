@@ -1,12 +1,20 @@
 <script setup lang="ts">
 import { onErrorCaptured } from 'vue';
-
-// import { RouterLink, RouterView } from 'vue-router'
+import { ref } from 'vue';
+const show = ref(false);
+const message = ref('');
+type ErrorObj = {
+  message: string
+  a: number
+  b: number
+};
 
 onErrorCaptured((error) => {
-
-  console.log('onErrorCaptured', error.message);
   debugger;
+  const obj = JSON.parse(error.message) as ErrorObj;
+  message.value = `錯誤訊息:${obj.message},a:${obj.a},b:${obj.b}`;
+  show.value = true;
+
 });
 
 </script>
@@ -15,6 +23,9 @@ onErrorCaptured((error) => {
   <v-app>
     <v-container>
       <RouterView />
+      <v-snackbar color="warning" v-model="show">
+        {{ message }}
+      </v-snackbar>
     </v-container>
   </v-app>
 
